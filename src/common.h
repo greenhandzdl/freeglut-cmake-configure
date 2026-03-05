@@ -11,29 +11,29 @@
 
 // Platform detection
 #ifdef __APPLE__
-    #define GL_SILENCE_DEPRECATION
+#define GL_SILENCE_DEPRECATION
 
-    #ifdef USE_GLEW
-        // Include GLEW before GLUT on macOS
-        #include <GL/glew.h>
-    #endif
+#ifdef USE_GLEW
+// Include GLEW before GLUT on macOS
+#include <GL/glew.h>
+#endif
 
-    #ifdef USE_FREEGLUT
-        // Using FreeGLUT from Homebrew
-        #include <GL/freeglut.h>
-    #else
-        // Using macOS native GLUT framework
-        #include <GLUT/glut.h>
-    #endif
+#ifdef USE_FREEGLUT
+// Using FreeGLUT from Homebrew
+#include <GL/freeglut.h>
 #else
-    // Linux and other platforms
-    #ifdef USE_GLEW
-        // Include GLEW after FreeGLUT on Linux
-        #include <GL/freeglut.h>
-        #include <GL/glew.h>
-    #else
-        #include <GL/freeglut.h>
-    #endif
+// Using macOS native GLUT framework
+#include <GLUT/glut.h>
+#endif
+#else
+// Linux and other platforms
+#ifdef USE_GLEW
+// Include GLEW BEFORE GLUT on Linux (GLEW must be included before gl.h)
+#include <GL/glew.h>
+#include <GL/freeglut.h>
+#else
+#include <GL/freeglut.h>
+#endif
 #endif
 
 // Common macros and utilities
