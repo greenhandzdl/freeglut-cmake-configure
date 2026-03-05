@@ -4,6 +4,8 @@ CMakeCache.txt
 CMakeFiles
 cmake_install.cmake
 Makefile
+install_manifest.txt
+compile_commands.json
 
 # Build directory
 build/
@@ -26,6 +28,10 @@ scripts/run.sh
 # macOS
 .DS_Store
 
+# Backup files
+*.bak
+*.backup
+
 # Compiled
 *.o
 *.so
@@ -33,3 +39,4 @@ scripts/run.sh
 *.lib
 *.dll
 *.exe
+*.dylib

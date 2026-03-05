@@ -228,6 +228,23 @@ int main(int argc, char** argv)
 
     std::cout << "Window created successfully (ID: " << g_window_id << ")" << std::endl;
 
+#ifdef USE_GLEW
+ // Initialize GLEW (Note: May have issues on macOS with FreeGLUT/X11)
+ std::cout << "Attempting GLEW initialization..." << std::endl;
+ glewExperimental = GL_TRUE;
+ GLenum err = glewInit();
+ if (err == GLEW_OK) {
+     std::cout << "GLEW initialized successfully!" << std::endl;
+     std::cout << "  GLEW Version: " << glewGetString(GLEW_VERSION) << std::endl;
+ } else {
+     std::cerr << "Warning: GLEW initialization failed: " << glewGetErrorString(err) << std::endl;
+     std::cerr << "Continuing with basic OpenGL..." << std::endl;
+ }
+#else
+ std::cout << "Building without GLEW support" << std::endl;
+#endif
+
+
     // Initialize OpenGL
     initGL();
 
